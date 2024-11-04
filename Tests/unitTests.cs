@@ -18,15 +18,12 @@ namespace CGenius.Tests.Unit.Tests
         [Fact]
         public void Login_ReturnsToken_WhenCredentialsAreValid()
         {
-            // Arrange
             var userLogin = new UserLogin { Username = "test", Password = "password" };
             var expectedToken = "some.jwt.token";
             _authServiceMock.Setup(x => x.Login(userLogin)).Returns(expectedToken);
 
-            // Act
             var result = _controller.Login(userLogin);
 
-            // Assert
             Assert.NotNull(result);
             Assert.Equal(expectedToken, result);
         }
