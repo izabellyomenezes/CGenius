@@ -2,19 +2,19 @@
 
 ## Definindo a Arquitetura da API
 
-Optamos por desenvolver a aplicaÁ„o em uma arquitetura monolÌtica em vez de microsserviÁos, devido ‡ ausÍncia de uma perspectiva clara de crescimento futuro. A aplicaÁ„o j· est· praticamente completa em termos de funcionalidades, e as futuras modificaÁıes ser„o apenas ajustes ou melhorias nas funcionalidades j· implementadas. A arquitetura monolÌtica oferece maior simplicidade no desenvolvimento e nos testes, facilitando a integraÁ„o entre os componentes, reduzindo a complexidade e tornando o desenvolvimento mais ·gil e eficiente.
+Optamos por desenvolver a aplica√ß√£o em uma arquitetura monol√≠tica em vez de microsservi√ßos, devido √† aus√™ncia de uma perspectiva clara de crescimento futuro. A aplica√ß√£o j√° est√° praticamente completa em termos de funcionalidades, e as futuras modifica√ß√µes ser√£o apenas ajustes ou melhorias nas funcionalidades j√° implementadas. A arquitetura monol√≠tica oferece maior simplicidade no desenvolvimento e nos testes, facilitando a integra√ß√£o entre os componentes, reduzindo a complexidade e tornando o desenvolvimento mais √°gil e eficiente.
 
 ## CRUD da API
 
-Para garantir o correto funcionamento do CRUD e dos relacionamentos entre as entidades, siga a ordem de criaÁ„o dos registros (POST) de acordo com as dependÍncias:
+Para garantir o correto funcionamento do CRUD e dos relacionamentos entre as entidades, siga a ordem de cria√ß√£o dos registros (POST) de acordo com as depend√™ncias:
 
 ### Ordem de Postagem
-1. **Atendente** (necess·rio para criar Venda)
-2. **Plano** (necess·rio para criar Script)
-3. **Script** (necess·rio para criar Cliente e Venda)
-4. **Cliente** (necess·rio para criar Especificacao e Venda)
-5. **Especificacao** (necess·rio para criar Venda)
-6. **Venda** (˙ltima entidade, pois depende de todas as anteriores)
+1. **Atendente** (necess√°rio para criar Venda)
+2. **Plano** (necess√°rio para criar Script)
+3. **Script** (necess√°rio para criar Cliente e Venda)
+4. **Cliente** (necess√°rio para criar Especificacao e Venda)
+5. **Especificacao** (necess√°rio para criar Venda)
+6. **Venda** (√∫ltima entidade, pois depende de todas as anteriores)
 
 ---
 
@@ -36,7 +36,7 @@ Para garantir o correto funcionamento do CRUD e dos relacionamentos entre as ent
 ```json
 {
     "NomePlano": "Plano Premium Plus",
-    "DescricaoPlano": "Acesso ilimitado a todos os serviÁos.",
+    "DescricaoPlano": "Acesso ilimitado a todos os servi√ßos.",
     "ValorPlano": 199.99,
     "scripts": [],
     "vendas": []
@@ -55,7 +55,7 @@ Para garantir o correto funcionamento do CRUD e dos relacionamentos entre as ent
 ```json
 {
     "CpfCliente": "12345678900",
-    "NomeCliente": "Jo„o da Silva",
+    "NomeCliente": "Jo√£o da Silva",
     "DtNascimento": "1990-05-21",
     "Genero": "Masculino",
     "Cep": "12345678",
@@ -99,5 +99,4 @@ Para garantir o correto funcionamento do CRUD e dos relacionamentos entre as ent
 RM99814- Anna Soares
 RM98214- Gabriel Cirilo
 RM551423-Izabelly Oliveira
-RM551604- Lucas Monte
 RM99578-Marcos Garrido
