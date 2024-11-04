@@ -18,14 +18,11 @@ namespace CGenius.Tests.IntegrationTests
         [Fact]
         public async Task Login_ReturnsOk_WhenCredentialsAreValid()
         {
-            // Arrange
             var userLogin = new { Username = "test", Password = "password" };
             var content = new StringContent(JsonConvert.SerializeObject(userLogin), Encoding.UTF8, "application/json");
 
-            // Act
             var response = await _client.PostAsync("/api/auth/login", content);
 
-            // Assert
             response.EnsureSuccessStatusCode();
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         }
