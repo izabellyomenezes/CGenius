@@ -1,98 +1,49 @@
 # CGenius
 
-## Definindo a Arquitetura da API
+CGenius é um sistema avançado para gerenciar transações, autenticação e modelos preditivos, utilizando princípios modernos de desenvolvimento de software e Inteligência Artificial Generativa. O projeto integra IA para análise de texto, autenticação JWT e processamento de pagamentos com Stripe.
 
-Optamos por desenvolver a aplicação em uma arquitetura monolítica em vez de microsserviços, devido à ausência de uma perspectiva clara de crescimento futuro. A aplicação já está praticamente completa em termos de funcionalidades, e as futuras modificações serão apenas ajustes ou melhorias nas funcionalidades já implementadas. A arquitetura monolítica oferece maior simplicidade no desenvolvimento e nos testes, facilitando a integração entre os componentes, reduzindo a complexidade e tornando o desenvolvimento mais ágil e eficiente.
+## Funcionalidades Principais
 
-## CRUD da API
+1. **Inteligência Artificial Generativa**
+   - O sistema utiliza o ML.NET para criar um modelo de aprendizado de máquina que analisa texto e fornece previsões.
+   - **Exemplo de Uso**: O serviço `MLModelService` recebe entradas de texto e retorna uma pontuação preditiva.
 
-Para garantir o correto funcionamento do CRUD e dos relacionamentos entre as entidades, siga a ordem de criação dos registros (POST) de acordo com as dependências:
+2. **Autenticação JWT**
+   - Autenticação segura usando tokens JWT.
+   - **Endpoint**: `api/Auth/login` para gerar tokens JWT válidos por 30 minutos.
 
-### Ordem de Postagem
-1. **Atendente** (necessário para criar Venda)
-2. **Plano** (necessário para criar Script)
-3. **Script** (necessário para criar Cliente e Venda)
-4. **Cliente** (necessário para criar Especificacao e Venda)
-5. **Especificacao** (necessário para criar Venda)
-6. **Venda** (última entidade, pois depende de todas as anteriores)
+3. **Processamento de Pagamentos**
+   - Integração com a API Stripe para criar pagamentos seguros e gerenciar transações.
+   - **Exemplo de Uso**: O serviço `PaymentService` gera um `ClientSecret` para realizar pagamentos.
 
----
+## Tecnologias Utilizadas
 
-## Exemplos de JSONs para POST
+- **.NET 6**
+- **ML.NET** para modelos de aprendizado de máquina.
+- **Entity Framework Core** com banco de dados Oracle.
+- **JWT** para autenticação segura.
+- **Stripe API** para processamento de pagamentos.
+- **xUnit** para testes.
 
-### 1. Atendente
-```json
-{
-  "cpfAtendente": "98765432100",
-  "nomeAtendente": "Maria Souza",
-  "setor": "Vendas",
-  "senha": "senha123",
-  "perfilAtendente": "Atendente Senior",
-  "vendas": []
-}
-```
+## Pagamento com Stripe
 
-### 2. Plano
-```json
-{
-    "NomePlano": "Plano Premium Plus",
-    "DescricaoPlano": "Acesso ilimitado a todos os serviços.",
-    "ValorPlano": 199.99,
-    "scripts": [],
-    "vendas": []
-}
-```
+Para pagamentos, o PaymentService utiliza a API do Stripe, configurado no arquivo appsettings.json.
 
-### 3. Script
-```json
-{
-    "DescricaoScript": "Script de venda para clientes premium.",
-    "IdPlano": 1
-}
-```
+## Testes
+O projeto CGenius possui testes automatizados que garantem a qualidade do código e a confiabilidade das funcionalidades:
 
-### 4. Cliente
-```json
-{
-    "CpfCliente": "12345678900",
-    "NomeCliente": "João da Silva",
-    "DtNascimento": "1990-05-21",
-    "Genero": "Masculino",
-    "Cep": "12345678",
-    "Telefone": "11987654321",
-    "Email": "joao.silva@gmail.com",
-    "PerfilCliente": "Cliente Premium",
-    "IdScript": 1
-}
-```
+**Tipos de Testes**
 
-### 5. Especificacao
-```json
-{
-    "TipoCartaoCredito": "Black",
-    "GastoMensal": 5000.00,
-    "ViajaFrequentemente": true,
-    "Interesses": "Tecnologia",
-    "Profissao": "Engenheiro",
-    "RendaMensal": 10000.00,
-    "Dependentes": 2,
-    "CpfCliente": "12345678900"
-}
-```
+- Testes Unitários (UnitTests.cs)
+Verificam a lógica de negócio em isolamento.
+Framework: xUnit
 
+- Testes de Integração (IntegrationTests.cs)
+Garantem que os diferentes componentes do sistema funcionam corretamente juntos.
+Testes incluem interações com o banco de dados e autenticação.
 
-
-### 6. Venda
-```json
-{
-    "CpfAtendente": "98765432100",
-    "CpfCliente": "12345678900",
-    "IdScript": 1,
-    "IdPlano": 1,
-    "IdEspecificacao": 1
-}
-```
-
+- Testes de Sistema (SystemTests.cs)
+Validam o sistema como um todo, simulando cenários de uso real.
 
 ## Integrantes
 
