@@ -10,7 +10,6 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddDbContext<dbContext>(options =>
     options.UseOracle(builder.Configuration.GetConnectionString("OracleConnection"))
 );
@@ -24,7 +23,6 @@ builder.Services.AddScoped<IVendaRepository, VendaRepository>();
 
 builder.Services.AddControllers();
 
-// Configuração da autenticação JWT
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -44,7 +42,6 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
@@ -52,7 +49,7 @@ builder.Services.AddSwaggerGen(c =>
     {
         Title = "Challenge",
         Version = "v1",
-        Description = "Documentação da API do CGenius",
+        Description = "DocumentaÃ§Ã£o da API do CGenius",
     });
     var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
